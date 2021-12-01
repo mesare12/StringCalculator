@@ -1,11 +1,2 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("StringCalculatortest")]
-namespace StringCalculator
-{
-    class Program
-    {
-
-    }
-}
+﻿// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, World!");
