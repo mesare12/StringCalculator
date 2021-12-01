@@ -10,5 +10,12 @@ namespace TestProject1
             int result = Calculator.Add("");
             Assert.Equal(0, result);
         }
+        [Fact]
+        public void GivenAStringWithOneThenReturns()
+        {
+            int result = Calculator.Add("1");
+            Assert.Equal(1, result);
+        }
+       
     }
 }
