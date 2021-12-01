@@ -16,6 +16,11 @@ namespace TestProject1
             int result = Calculator.Add("1");
             Assert.Equal(1, result);
         }
-       
+        [Fact]
+        public void GivenAStringWithTwoNumbersThenReturnsTheSum()
+        {
+            int result = Calculator.Add("3");
+            Assert.Equal(3, result);
+        }
     }
 }

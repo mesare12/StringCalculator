@@ -10,9 +10,11 @@ namespace StringCalculator
     {
         public static int Add(string text)
         {
-            if(text == "1")
-            return 1;
-            return 0;
+            if (text.Length == 0)
+                return 0;
+            return int.Parse(text);
+            
+            
 
         }
     }
