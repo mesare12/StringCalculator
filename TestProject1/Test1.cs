@@ -19,7 +19,7 @@ namespace TestProject1
         [Fact]
         public void GivenAStringWithTwoNumbersThenReturnsTheSum()
         {
-            int result = Calculator.Add("3");
+            int result = Calculator.Add("1,2");
             Assert.Equal(3, result);
         }
     }
