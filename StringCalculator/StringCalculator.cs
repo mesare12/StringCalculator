@@ -13,18 +13,15 @@ namespace StringCalculator
             if (text.Length == 0)
                 return 0;
             if (text.Contains(","))
-            {
-                int Value = CommaSplit(text);
-                return Value;
-            }
-
+                return CommaSplit(text);
             return int.Parse(text);
            
         }
 
         private static int CommaSplit(string text)
         {
-            string[] split = text.Split(',');
+            var Delimeter = new[] { ',', '\n' };
+            string[] split = text.Split(Delimeter);
             int Value = 0;
             for (int j = 0; j < split.Length; j++)
                 Value = Value + int.Parse(split[j]);

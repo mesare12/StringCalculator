@@ -22,5 +22,11 @@ namespace TestProject1
             int result = Calculator.Add("1,2");
             Assert.Equal(3, result);
         }
+        [Fact]
+        public void GivenAStringWithALineBreakThenReturnsTheSum()
+        {
+            int result = Calculator.Add("1\n2, 3");
+            Assert.Equal(6, result);
+        }
     }
 }
