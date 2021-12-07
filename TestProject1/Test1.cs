@@ -25,6 +25,8 @@ namespace TestProject1
         [Theory]
         [InlineData(2 , "1,1")]
         [InlineData(5 , "1,4")]
+        [InlineData(20 , "11,9")]
+        [InlineData(11 , "1,1,9")]
         public void GivenAStringWithAnUnknownNumberThenReturnsTheSum(int expected, string input)
         {
             int result = Calculator.Add(input);
@@ -38,6 +40,11 @@ namespace TestProject1
             Assert.Equal(6, result);
         }
        
-      
+        [Fact]
+        public void GivenAStringWithDelimetersThenReturnsASum()
+        {
+            int result = Calculator.Add("//;\n1;2");
+            Assert.Equal(3, result);
+        }
     }
 }
