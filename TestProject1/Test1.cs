@@ -22,11 +22,22 @@ namespace TestProject1
             int result = Calculator.Add("1,2");
             Assert.Equal(3, result);
         }
+        [Theory]
+        [InlineData(3 , "1,1")]
+        [InlineData(1 , "1,4")]
+        public void GivenAStringWithAnUnknownNumberThenReturnsTheSum(int expected, string input)
+        {
+            int result = Calculator.Add(input);
+            Assert.Equal(expected, result);
+        }
+
         [Fact]
         public void GivenAStringWithALineBreakThenReturnsTheSum()
         {
             int result = Calculator.Add("1\n2, 3");
             Assert.Equal(6, result);
         }
+       
+      
     }
 }

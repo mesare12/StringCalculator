@@ -8,27 +8,33 @@ namespace StringCalculator
 {
     internal class Calculator
     {
-        public static int Add(string text)
+        public static int Add(string number)
         {
-            if (text.Length == 0)
+            if (number.Length == 0)
                 return 0;
-            if (text.Contains(","))
-                return CommaSplit(text);
-            return int.Parse(text);
+            if (number.Contains(','))
+                return CommaSplit(number);
+            return int.Parse(number);
            
         }
-
+        
         private static int CommaSplit(string text)
-        {
+        { 
             var Delimeter = new[] { ',', '\n' };
             string[] split = text.Split(Delimeter);
+            
             int Value = 0;
             for (int j = 0; j < split.Length; j++)
                 Value = Value + int.Parse(split[j]);
+                
             return Value;
         }
 
+       
 
+        
+         
+        
 
 
 
