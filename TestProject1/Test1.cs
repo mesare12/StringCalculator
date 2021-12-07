@@ -23,8 +23,8 @@ namespace TestProject1
             Assert.Equal(3, result);
         }
         [Theory]
-        [InlineData(3 , "1,1")]
-        [InlineData(1 , "1,4")]
+        [InlineData(2 , "1,1")]
+        [InlineData(5 , "1,4")]
         public void GivenAStringWithAnUnknownNumberThenReturnsTheSum(int expected, string input)
         {
             int result = Calculator.Add(input);
