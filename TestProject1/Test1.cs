@@ -1,5 +1,7 @@
 using Xunit;
 using StringCalculator;
+using System;
+
 namespace TestProject1
 {
     public class StringCalculatorTest
@@ -46,5 +48,13 @@ namespace TestProject1
             int result = Calculator.Add("//;\n1;2");
             Assert.Equal(3, result);
         }
+        [Theory]
+        [InlineData("-1")]
+        [InlineData("-3")]
+        public void CallingANegativeNumberThrowsException( string input)
+        {
+            Assert.Throws<ArgumentException>(()=>Calculator.Add(input));
+        }
     }
+  
 }

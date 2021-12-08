@@ -13,8 +13,6 @@ namespace StringCalculator
         {
             if (number.Length == 0)
                 return 0;
-          
-               
             return Delimeter(number);
            
         }
@@ -29,12 +27,18 @@ namespace StringCalculator
             }
             
             string[] split = number.Split(Delimiters);
-
+            
             
             int Value = 0;
             for (int j = 0; j < split.Length; j++)
                 Value += int.Parse(split[j]);
+            if (Value < 0)
+            {
+                throw new ArgumentException("Number cannot be negative" + " " +Value);
+            }
             return Value;
+
+            
         }
 
         private static char[] GetDelimeters(string text)
