@@ -64,6 +64,15 @@ namespace TestProject1
             int result = Calculator.Add(input);
             Assert.Equal(expected, result);
         }
+        [Theory]
+        [InlineData(6, "//[***]\n1***2***3")]
+        [InlineData(6, "//[|||]\n1|||2|||3")]
+
+        public void DelimitersCanBeAnyLength(int expected, string input)
+        {
+            int result = Calculator.Add(input);
+            Assert.Equal(expected, result);
+        }
     }
   
 }

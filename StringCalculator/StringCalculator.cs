@@ -14,23 +14,23 @@ namespace StringCalculator
             if (number.Length == 0)
                 return 0;
             return Delimeter(number);
-           
+
         }
-        
+
         private static int Delimeter(string number)
         {
-            char[] Delimiters = GetDelimeters(number);
+            string[] Delimiters = GetDelimeters(number);
             if (number.StartsWith("//"))
             {
                 number = number.Substring(4);
 
             }
-            
-            string[] split = number.Split(Delimiters);
+
+            string[] split = number.Split(Delimiters, StringSplitOptions.None);
             int Value = 0;
             for (int j = 0; j < split.Length; j++)
-            Value = FilterNegativeNumbersAndHigherThan1000(split, Value, j);
-            
+                Value = FilterNegativeNumbersAndHigherThan1000(split, Value, j);
+
             return Value;
         }
 
@@ -49,17 +49,26 @@ namespace StringCalculator
             return Value;
         }
 
-        private static char[] GetDelimeters(string text)
+        private static string[] GetDelimeters(string text)
         {
-            var Delimiters = new List<char> { ',', '\n' };
+            var Delimiters = new List<string> { ",", "\n" };
             if (text.StartsWith("//"))
             {
-                string DelimeterDeclared = text.Split('\n').First();
-                char Delimeter = DelimeterDeclared.Substring(2, 1).Single();
-                Delimiters.Add(Delimeter);
+                string DelimeterDeclared = text.Split('\n').First().Substring(2);
+                if (DelimeterDeclared.StartsWith("["))
+                {
+                    Delimiters.Add(DelimeterDeclared.Substring(1, DelimeterDeclared.Length - 2));
+                }
+                else
+                {
+                    Delimiters.Add(DelimeterDeclared);
+                }
+
             }
 
             return Delimiters.ToArray();
         }
     }
 }
+
+
