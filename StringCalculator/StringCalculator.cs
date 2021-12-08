@@ -6,42 +6,47 @@ using System.Threading.Tasks;
 
 namespace StringCalculator
 {
-    internal class Calculator
+    internal static class Calculator
     {
 
         public static int Add(string number)
         {
             if (number.Length == 0)
                 return 0;
-            if (number.Contains(','))
-                return Delimeter(number);
-            if (number.Contains(";"))
-                return Delimeter(number);
-            return int.Parse(number);
+          
+               
+            return Delimeter(number);
            
         }
         
-        private static int Delimeter(string text)
+        private static int Delimeter(string number)
         {
+            char[] Delimiters = GetDelimeters(number);
+            if (number.StartsWith("//"))
+            {
+                number = number.Substring(4);
 
-            char [] Delimiters = GetDelimeters(text);
-            string[] split = text.Split(Delimiters);
-           
+            }
+            
+            string[] split = number.Split(Delimiters);
+
+            
             int Value = 0;
             for (int j = 0; j < split.Length; j++)
-                Value = Value + int.Parse(split[j]);
+                Value += int.Parse(split[j]);
             return Value;
         }
 
         private static char[] GetDelimeters(string text)
         {
-            var Delimiters = new List<char> { ',', '\n', ';' };
+            var Delimiters = new List<char> { ',', '\n' };
             if (text.StartsWith("//"))
             {
                 string DelimeterDeclared = text.Split('\n').First();
-                char Delimeter = DelimeterDeclared.Substring(2,1).Single();
+                char Delimeter = DelimeterDeclared.Substring(2, 1).Single();
                 Delimiters.Add(Delimeter);
             }
+
             return Delimiters.ToArray();
         }
     }

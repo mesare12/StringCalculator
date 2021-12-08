@@ -4,11 +4,11 @@ using System.Runtime.CompilerServices;
 [assembly:InternalsVisibleTo("StringCalculatorTest")] 
 namespace StringCalculator
 {
-    class Program
+    static class Program
     {
-        public static void Main(String[] args)
+        public static void Main()
         {
-
+            //Only for program start
         }
     }
 }
