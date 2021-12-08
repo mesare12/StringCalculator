@@ -27,18 +27,26 @@ namespace StringCalculator
             }
             
             string[] split = number.Split(Delimiters);
-            
-            
             int Value = 0;
             for (int j = 0; j < split.Length; j++)
-                Value += int.Parse(split[j]);
+            Value = FilterNegativeNumbersAndHigherThan1000(split, Value, j);
+            
+            return Value;
+        }
+
+        private static int FilterNegativeNumbersAndHigherThan1000(string[] split, int Value, int j)
+        {
+            var tempValue = int.Parse(split[j]);
+            if (tempValue <= 1000)
+            {
+                Value += tempValue;
+            }
             if (Value < 0)
             {
-                throw new ArgumentException("Number cannot be negative" + " " +Value);
+                throw new ArgumentException("Number cannot be negative" + " " + Value);
             }
-            return Value;
 
-            
+            return Value;
         }
 
         private static char[] GetDelimeters(string text)
