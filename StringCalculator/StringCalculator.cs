@@ -20,17 +20,22 @@ namespace StringCalculator
         private static int Delimeter(string number)
         {
             string[] Delimiters = GetDelimeters(number);
-            if (number.StartsWith("//"))
-            {
-                number = number.Substring(4);
+            if (number.StartsWith("//")) 
+                number = number.Substring(Delimiters.Length - 1);
+                number = number.Replace("[", "").Replace("]", "");
 
-            }
+            string[] split = number.Split(Delimiters, StringSplitOptions.RemoveEmptyEntries);
 
-            string[] split = number.Split(Delimiters, StringSplitOptions.None);
+            int Value = StringToInt(split);
+
+            return Value;
+        }
+
+        private static int StringToInt(string[] split)
+        {
             int Value = 0;
             for (int j = 0; j < split.Length; j++)
                 Value = FilterNegativeNumbersAndHigherThan1000(split, Value, j);
-
             return Value;
         }
 
@@ -51,22 +56,26 @@ namespace StringCalculator
 
         private static string[] GetDelimeters(string text)
         {
-            var Delimiters = new List<string> { ",", "\n" };
+            var Delimiters = new List<string> { ",", "\n"};
             if (text.StartsWith("//"))
             {
-                string DelimeterDeclared = text.Split('\n').First().Substring(2);
-                if (DelimeterDeclared.StartsWith("["))
-                {
-                    Delimiters.Add(DelimeterDeclared.Substring(1, DelimeterDeclared.Length - 2));
-                }
-                else
-                {
-                    Delimiters.Add(DelimeterDeclared);
-                }
-
+                DelimiterDeclaration(text, Delimiters);               
             }
 
             return Delimiters.ToArray();
+        }
+
+        private static void DelimiterDeclaration(string text, List<string> Delimiters)
+        {
+            string DelimeterDeclared = text.Split('\n').First().Substring(2);
+            if (DelimeterDeclared.StartsWith("["))
+            {
+                Delimiters.Add(DelimeterDeclared.Substring(1, DelimeterDeclared.Length - 2));
+            }
+            else
+            {
+                Delimiters.Add(DelimeterDeclared);
+            }
         }
     }
 }
